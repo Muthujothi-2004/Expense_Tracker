@@ -1,0 +1,74 @@
+.App {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+}
+
+.income-section {
+  margin-bottom: 20px;
+}
+
+input {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(50% - 12px);
+}
+
+button {
+  padding: 10px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.expense-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #555;
+}
+
+.expense-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+li button {
+  background-color: #dc3545;
+}
+
+li button:hover {
+  background-color: #c82333;
+}
