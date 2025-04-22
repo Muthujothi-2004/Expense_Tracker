@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { format } from "date-fns";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-import { db, auth } from "../firebase/firebase";
+import { db, auth } from "../firebase/firebase.config";
 import { Category, CreditCard, AttachMoney, LocalGroceryStore } from "@mui/icons-material"; // Add icons
 
 const AddTransaction = ({ onSave, onClose, selectedDate, editData }) => {
@@ -126,7 +126,7 @@ const AddTransaction = ({ onSave, onClose, selectedDate, editData }) => {
         {editData ? "Edit" : "Add"} {type.toUpperCase()}
       </DialogTitle>
 
-      <DialogContent style={{ backgroundImage: 'url(https://i.pinimg.com/736x/55/f5/a0/55f5a0b0c7f77a04bacf3e25a849b66f.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <DialogContent>
         <Stack spacing={2}>
 
           {/* Toggle Buttons for Expense/Income */}

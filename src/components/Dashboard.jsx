@@ -9,7 +9,7 @@ import {
   FaEdit,
   FaTrash,
 } from "react-icons/fa";
-import { db, auth } from "../firebase/firebase";
+import { db, auth } from "../firebase/firebase.config";
 import {
   collection,
   query,
@@ -160,7 +160,7 @@ const Dashboard = () => {
         overflow: "auto",
       }}
     >
-      {/* Stylish blurred background */}
+      
       <div
         style={{
           position: "absolute",
@@ -177,7 +177,7 @@ const Dashboard = () => {
         }}
       />
 
-      {/* Main Content with Glass Effect */}
+   
       <div
         style={{
           position: "relative",
@@ -189,7 +189,7 @@ const Dashboard = () => {
           minHeight: "100vh",
         }}
       >
-        {/* Updated Header Section */}
+      
         <div
           className="d-flex flex-wrap justify-content-between align-items-center mb-4 p-4 rounded-3 shadow bg-white"
           style={{

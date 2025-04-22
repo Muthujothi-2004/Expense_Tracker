@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, googleProvider, db } from "../firebase/firebase";
+import { auth, googleProvider, db } from "../firebase/firebase.config";
 import {
   signInWithPopup,
   signInWithEmailAndPassword,
@@ -79,7 +79,7 @@ export default function AuthPage() {
   return (
     <div className="d-flex justify-content-center align-items-center max-vh-100 bg-light"
     style={{
-        backgroundImage: "url(https://img.freepik.com/free-vector/dollar-sign-pattern-background_23-2150979310.jpg?ga=GA1.1.1856644152.1744804762&semt=ais_hybrid&w=740)",
+        backgroundImage: "url(https://media.istockphoto.com/id/1368169112/vector/money-green-seamless-pattern-vector-background-included-line-icons-as-piggy-bank-wallet.jpg?s=612x612&w=0&k=20&c=qjIUpnUPtiKGBgLnXGLQ_4qQUq36OvP82DIFTAdch70=)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

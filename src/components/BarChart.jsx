@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { collection, getDocs } from "firebase/firestore";
-import { db, auth } from "../firebase/firebase";
+import { db, auth } from "../firebase/firebase.config";
 import { format } from "date-fns";
 
 const COLORS = [
-  "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40",
+  "#FF6384",
+  "#36A2EB",
+  "#FFCE56",
+  "#4BC0C0",
+  "#9966FF",
+  "#FF9F40",
 ];
 
 const PieChartComponent = ({ selectedDate }) => {
@@ -45,12 +50,14 @@ const PieChartComponent = ({ selectedDate }) => {
         categoryTotals[category] += parseFloat(rec.amount);
       });
 
-      const result = Object.entries(categoryTotals).map(([category, value], index) => ({
-        id: index,
-        label: category,
-        value,
-        color: COLORS[index % COLORS.length],
-      }));
+      const result = Object.entries(categoryTotals).map(
+        ([category, value], index) => ({
+          id: index,
+          label: category,
+          value,
+          color: COLORS[index % COLORS.length],
+        })
+      );
 
       setChartData(result);
     };
@@ -62,7 +69,6 @@ const PieChartComponent = ({ selectedDate }) => {
     <div className="container mt-4">
       <h4 className="mb-3">Expenses Pie Chart</h4>
 
-      {/* Time Filter */}
       <div className="mb-3 text-end">
         <select
           className="form-select w-auto d-inline-block"
@@ -74,7 +80,6 @@ const PieChartComponent = ({ selectedDate }) => {
         </select>
       </div>
 
-      {/* Monthly Selector Card */}
       {timeFilter === "Monthly" && (
         <div className="p-3 mb-4 rounded shadow bg-white text-center">
           <strong>Select Month:</strong>{" "}
@@ -87,7 +92,6 @@ const PieChartComponent = ({ selectedDate }) => {
         </div>
       )}
 
-      {/* Pie Chart or Empty */}
       {chartData.length > 0 ? (
         <PieChart
           series={[
@@ -105,8 +109,8 @@ const PieChartComponent = ({ selectedDate }) => {
           height={300}
           sx={{
             [`& .${pieArcLabelClasses.root}`]: {
-              fontWeight: 'bold',
-              fill: '#333',
+              fontWeight: "bold",
+              fill: "#333",
             },
           }}
         />
