@@ -16,7 +16,9 @@ import {
 import { format } from "date-fns";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase/firebase.config";
-import { Category, CreditCard, AttachMoney, LocalGroceryStore } from "@mui/icons-material"; // Add icons
+import { Category, CreditCard, AttachMoney, LocalGroceryStore } from "@mui/icons-material"; 
+import { defaultExpenseCategories, defaultIncomeCategories, paymentModes } from '../config/config';
+
 
 const AddTransaction = ({ onSave, onClose, selectedDate, editData }) => {
   const [type, setType] = useState("expense");
@@ -27,9 +29,7 @@ const AddTransaction = ({ onSave, onClose, selectedDate, editData }) => {
   const [customCategory, setCustomCategory] = useState("");
   const [showCustomInput, setShowCustomInput] = useState(false);
 
-  const defaultExpenseCategories = ["Food", "Travel", "Shopping", "Bills", "Other"];
-  const defaultIncomeCategories = ["Salary", "Freelance", "Investment", "Gift", "Other"];
-  const paymentModes = ["Cash", "Card", "Bank Transfer", "UPI"];
+
 
   const [expenseCategories, setExpenseCategories] = useState([...defaultExpenseCategories]);
   const [incomeCategories, setIncomeCategories] = useState([...defaultIncomeCategories]);

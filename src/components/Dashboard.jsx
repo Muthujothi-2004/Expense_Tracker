@@ -23,6 +23,7 @@ import {
 import AddTransaction from "./AddTransaction";
 import BarChart from "./BarChart";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -160,7 +161,6 @@ const Dashboard = () => {
         overflow: "auto",
       }}
     >
-      
       <div
         style={{
           position: "absolute",
@@ -177,7 +177,6 @@ const Dashboard = () => {
         }}
       />
 
-   
       <div
         style={{
           position: "relative",
@@ -189,7 +188,6 @@ const Dashboard = () => {
           minHeight: "100vh",
         }}
       >
-      
         <div
           className="d-flex flex-wrap justify-content-between align-items-center mb-4 p-4 rounded-3 shadow bg-white"
           style={{
@@ -396,10 +394,20 @@ const Dashboard = () => {
             <button
               className="btn btn-danger w-100"
               onClick={() => {
-                if (window.confirm("Are you sure you want to logout?")) {
-                  auth.signOut();
-                  navigate("/");
-                }
+                Swal.fire({
+                  title: "Are you sure you want to logout?",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#d33",
+                  cancelButtonColor: "#3085d6",
+                  confirmButtonText: "Yes, logout",
+                  cancelButtonText: "Cancel",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    auth.signOut();
+                    navigate("/");
+                  }
+                });
               }}
             >
               Logout

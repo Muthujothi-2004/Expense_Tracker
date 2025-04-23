@@ -3,15 +3,7 @@ import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { collection, getDocs } from "firebase/firestore";
 import { db, auth } from "../firebase/firebase.config";
 import { format } from "date-fns";
-
-const COLORS = [
-  "#FF6384",
-  "#36A2EB",
-  "#FFCE56",
-  "#4BC0C0",
-  "#9966FF",
-  "#FF9F40",
-];
+import { COLORS } from '../config/config';
 
 const PieChartComponent = ({ selectedDate }) => {
   const [chartData, setChartData] = useState([]);
