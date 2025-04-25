@@ -52,7 +52,7 @@ export default function AuthPage() {
 
   const handleAuth = async () => {
     setLoading(true);
-    console.log({ name, email, password });
+    // console.log({ name, email, password });
     try {
       if (isSignUp) {
         const res = await createUserWithEmailAndPassword(auth, email, password);

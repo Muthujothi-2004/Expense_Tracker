@@ -23,6 +23,7 @@ import {
 import AddTransaction from "./AddTransaction";
 import BarChart from "./BarChart";
 import { useNavigate } from "react-router-dom";
+import { Modal, Button } from 'react-bootstrap';
 import Swal from "sweetalert2";
 
 const Dashboard = () => {
@@ -398,8 +399,8 @@ const Dashboard = () => {
                   title: "Are you sure you want to logout?",
                   icon: "warning",
                   showCancelButton: true,
-                  confirmButtonColor: "#d33",
-                  cancelButtonColor: "#3085d6",
+                  confirmButtonColor: "#d33", 
+                  cancelButtonColor: "#3085d6", 
                   confirmButtonText: "Yes, logout",
                   cancelButtonText: "Cancel",
                 }).then((result) => {
@@ -414,51 +415,45 @@ const Dashboard = () => {
             </button>
           </div>
         )}
-
-        {showEditModal && (
-          <>
-            <div
-              className="position-fixed top-0 start-0 w-100 h-100 bg-dark"
-              style={{ opacity: 0.5, zIndex: 1055 }}
-            ></div>
-            <div
-              className="position-fixed top-50 start-50 translate-middle bg-white p-4 rounded shadow"
-              style={{ zIndex: 1060, width: "300px" }}
-              ref={modalRef}
+        <Modal
+          show={showEditModal}
+          onHide={() => setShowEditModal(false)}
+          backdrop="static"
+          keyboard={false}
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Name</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <input
+              type="text"
+              className="form-control"
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+              Cancel
+            </Button>
+            <Button
+              variant="success"
+              onClick={async () => {
+                const user = auth.currentUser;
+                if (user) {
+                  const userRef = doc(db, "users", user.uid);
+                  await updateDoc(userRef, { name: newName });
+                  setUserName(newName);
+                  setShowEditModal(false);
+                  setShowProfile(false);
+                }
+              }}
             >
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h6 className="mb-0">Edit Name</h6>
-                <button
-                  className="btn-close"
-                  onClick={() => setShowEditModal(false)}
-                ></button>
-              </div>
-              <input
-                type="text"
-                className="form-control mb-3"
-                value={newName}
-                onChange={(e) => setNewName(e.target.value)}
-              />
-              <div className="d-flex justify-content-end">
-                <button
-                  className="btn btn-success"
-                  onClick={async () => {
-                    const user = auth.currentUser;
-                    if (user) {
-                      const userRef = doc(db, "users", user.uid);
-                      await updateDoc(userRef, { name: newName });
-                      setUserName(newName);
-                      setShowEditModal(false);
-                      setShowProfile(false);
-                    }
-                  }}
-                >
-                  Save
-                </button>
-              </div>
-            </div>
-          </>
-        )}
+              Save
+            </Button>
+          </Modal.Footer>
+        </Modal>
 
         {editingTransaction && (
           <>
